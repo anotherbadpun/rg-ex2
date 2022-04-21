@@ -1,36 +1,61 @@
 const assert = require("assert");
 
 class treeAdd {
-    operatorString = '+'
-    left = null
-    right = null
-    result = null
+    static operatorString = '+'
+    static left = null
+    static right = null
+    static result = null
 
-    constructor(left, right) {
-        this.left = left
-        this.right = right
+    static calculate(left, right) {
+        treeAdd.left = left
+        treeAdd.right = right
 
-        this.calculate()
+        treeAdd.result = treeAdd.left + treeAdd.right
+        return treeAdd.result
     }
 
-    calculate() {
-        this.result = this.left + this.right
+    static getResult() {
+        return treeAdd.result
     }
 
-    getResult() {
-        return this.result
-    }
-
-    toString() {
-        return `${this.left} ${this.operatorString} ${this.right}`
+    static toString() {
+        return `${treeAdd.left} ${treeAdd.operatorString} ${treeAdd.right}`
     }
 }
 
 class treeMinus extends treeAdd {
-    operatorString = '-'
+    static operatorString = '-'
 
-    calculate() {
-        this.result = this.left - this.right
+    static calculate(left, right) {
+        treeMinus.left = left
+        treeMinus.right = right
+
+        treeMinus.result = treeMinus.left - treeMinus.right
+        return treeMinus.result
+    }
+}
+
+class treeDivide extends treeAdd {
+    static operatorString = '÷'
+
+    static calculate(left, right) {
+        treeDivide.left = left
+        treeDivide.right = right
+
+        treeDivide.result = treeDivide.left / treeDivide.right
+        return treeDivide.result
+    }
+}
+
+class treeMultiply extends treeAdd {
+    static operatorString = 'x'
+
+    static calculate(left, right) {
+        treeMultiply.left = left
+        treeMultiply.right = right
+
+        treeMultiply.result = treeMultiply.left * treeMultiply.right
+        return treeMultiply.result
     }
 }
 
@@ -42,13 +67,21 @@ class treeMinus extends treeAdd {
 // add.prototype.toString = (left, right) => {
 //     return `(${left.toString()} + ${right.toString()})`
 // }
-tc1 = new treeAdd(3, 2)
-console.log(tc1.getResult())
-console.log(tc1.toString())
-
-tc2 = new treeMinus(3, 2)
-console.log(tc2.getResult())
-console.log(tc2.toString())
+// tc1 = new treeAdd(3, 2)
+// console.log(tc1.getResult())
+// console.log(tc1.toString())
+//
+// tc2 = new treeMinus(3, 2)
+// console.log(tc2.getResult())
+// console.log(tc2.toString())
+//
+// tc3 = new treeMultiply(3, 2)
+// console.log(tc3.getResult())
+// console.log(tc3.toString())
+//
+// tc4 = new treeDivide(3, 2)
+// console.log(tc4.getResult())
+// console.log(tc4.toString())
 
 //     const result = function () {
 //         switch (this.operator) {
@@ -111,5 +144,11 @@ console.log(tc2.toString())
 //     Node("", 6, null, null)
 // );
 
-// assert.strictEqual("((7 + ((3 - 2) x 5)) ÷ 6)", tree.toString());
-// assert.strictEqual(2, tree.result());
+console.log(treeAdd.calculate(3,2))
+
+const tree = treeDivide.calculate(treeAdd.calculate(7, treeMultiply.calculate(
+    treeMinus.calculate(3,2)
+    , 5)), 6)
+
+assert.strictEqual("((7 + ((3 - 2) x 5)) ÷ 6)", tree.toString());
+//assert.strictEqual(2, tree.result());
