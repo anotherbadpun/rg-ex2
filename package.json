@@ -1,0 +1,23 @@
+{
+  "name": "rg-ex2",
+  "version": "1.0.0",
+  "description": "",
+  "main": "tree.js",
+  "dependencies": {
+    "assert": "^2.0.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "node tree.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/anotherbadpun/rg-ex2.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/anotherbadpun/rg-ex2/issues"
+  },
+  "homepage": "https://github.com/anotherbadpun/rg-ex2#readme"
+}
