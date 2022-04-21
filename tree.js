@@ -7,19 +7,20 @@ class treeAdd {
     static result = null
 
     static calculate(left, right) {
-        treeAdd.left = left
-        treeAdd.right = right
+        this.left = left
+        this.right = right
 
-        treeAdd.result = treeAdd.left + treeAdd.right
-        return treeAdd.result
+        this.result = this.left + this.right
+        return this.result
     }
 
     static getResult() {
-        return treeAdd.result
+        return this.result
     }
 
     static toString() {
-        return `${treeAdd.left} ${treeAdd.operatorString} ${treeAdd.right}`
+        console.log(`(${this.left} ${this.operatorString} ${this.right})`)
+        return `(${this.left} ${this.operatorString} ${this.right})`
     }
 }
 
@@ -27,11 +28,11 @@ class treeMinus extends treeAdd {
     static operatorString = '-'
 
     static calculate(left, right) {
-        treeMinus.left = left
-        treeMinus.right = right
+        this.left = left
+        this.right = right
 
-        treeMinus.result = treeMinus.left - treeMinus.right
-        return treeMinus.result
+        this.result = this.left - this.right
+        return this.result
     }
 }
 
@@ -39,11 +40,11 @@ class treeDivide extends treeAdd {
     static operatorString = '÷'
 
     static calculate(left, right) {
-        treeDivide.left = left
-        treeDivide.right = right
+        this.left = left
+        this.right = right
 
-        treeDivide.result = treeDivide.left / treeDivide.right
-        return treeDivide.result
+        this.result = this.left / this.right
+        return this.result
     }
 }
 
@@ -51,11 +52,11 @@ class treeMultiply extends treeAdd {
     static operatorString = 'x'
 
     static calculate(left, right) {
-        treeMultiply.left = left
-        treeMultiply.right = right
+        this.left = left
+        this.right = right
 
-        treeMultiply.result = treeMultiply.left * treeMultiply.right
-        return treeMultiply.result
+        this.result = this.left * this.right
+        return this.result
     }
 }
 
@@ -146,9 +147,12 @@ class treeMultiply extends treeAdd {
 
 console.log(treeAdd.calculate(3,2))
 
-const tree = treeDivide.calculate(treeAdd.calculate(7, treeMultiply.calculate(
-    treeMinus.calculate(3,2)
-    , 5)), 6)
+const tree = treeDivide.calculate(
+    treeAdd.calculate(7,
+        treeMultiply.calculate(
+            treeMinus.calculate(3,2)
+        , 5)
+    ), 6)
 
-assert.strictEqual("((7 + ((3 - 2) x 5)) ÷ 6)", tree.toString());
-//assert.strictEqual(2, tree.result());
+// assert.strictEqual("((7 + ((3 - 2) x 5)) ÷ 6)", tree.toString());
+assert.strictEqual(2, tree);
